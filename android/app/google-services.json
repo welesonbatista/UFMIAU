@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "647681733875",
+    "project_id": "aplicativo-universitario-da382",
+    "storage_bucket": "aplicativo-universitario-da382.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647681733875:android:eee982baf015f907edb386",
+        "android_client_info": {
+          "package_name": "com.example.aplicativouniversitario"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647681733875-agtajdipglna3ligdtk2tlpcegma9jdj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzuDur0UFsh3VvJ_p03N2g0W_2bJP_uvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647681733875-agtajdipglna3ligdtk2tlpcegma9jdj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "647681733875-oapq557o7sjhngl9a8h2e7j0lfhgre8i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.aplicativouniversitario"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
