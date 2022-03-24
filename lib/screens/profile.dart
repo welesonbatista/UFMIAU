@@ -1,5 +1,6 @@
 import 'package:aplicativouniversitario/auth/auth.dart';
 import 'package:aplicativouniversitario/utilities/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +24,8 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: background,
@@ -57,9 +60,9 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                       child: SizedBox(
                         width: 120,
                         height: 120,
-                        child: Image.asset(
-                          'lib/assets/image/profile.png',
-                          fit: BoxFit.cover,
+                        child: CircleAvatar(
+                          radius: 50,
+                          backgroundImage: NetworkImage(user!.photoURL()!),
                         ),
                       ),
                       borderRadius: const BorderRadius.all(
@@ -68,12 +71,12 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                     ),
                   ),
                   Column(
-                    children: const [
+                    children: [
                       Text(
-                        'Weleson Batista',
+                        user.displayName!,
                         style: nameUser,
                       ),
-                      Text('Ciência da Computação', style: textProfile),
+                      const Text('Ciência da Computação', style: textProfile),
                     ],
                   )
                 ],
@@ -229,10 +232,10 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                             padding: const EdgeInsets.fromLTRB(16, 16, 0, 0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text('201908162'),
-                                Text('Ativo'),
-                                Text('Weleson@discente.ufcat.edu.br'),
+                              children: [
+                                const Text('201908162'),
+                                const Text('Ativo'),
+                                Text(user.email!),
                               ],
                             ),
                           ),

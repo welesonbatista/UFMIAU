@@ -1,4 +1,5 @@
 import 'package:aplicativouniversitario/auth/auth.dart';
+import 'package:aplicativouniversitario/auth/google_sign_in.dart';
 import 'package:aplicativouniversitario/screens/login.dart';
 import 'package:aplicativouniversitario/utilities/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
         Provider<AuthentificationService>(
           create: (_) => AuthentificationService(FirebaseAuth.instance),
         ),
+        ChangeNotifierProvider(
+          create: (ctx) => GoogleSignInProvider(),
+        ),
         StreamProvider(
           create: (context) =>
               context.read<AuthentificationService>().authStateChanges,
@@ -42,10 +46,11 @@ class MyApp extends StatelessWidget {
         title: 'Universitário',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          scaffoldBackgroundColor: background,
           fontFamily: 'Raleway',
         ),
-        home: //const AuthentificationWrapper(),
-            const BottomNavegation(),
+        darkTheme: ThemeData(),
+        home: const AuthentificationWrapper(),
         color: background,
       ),
     );

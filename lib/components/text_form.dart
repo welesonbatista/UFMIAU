@@ -31,6 +31,12 @@ class TextForm extends StatelessWidget {
           prefixIcon: icon,
           labelText: txt,
           //labelStyle: ,
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+            borderRadius: BorderRadius.all(
+              Radius.circular(10.0),
+            ),
+          ),
           border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(10.0),

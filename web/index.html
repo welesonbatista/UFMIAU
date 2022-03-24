@@ -33,6 +33,23 @@
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+  
+  <script>
+    var firebaseConfig= {
+      apiKey: "AIzaSyBtRhgtCVaYo75aunD54DkXwbRuS0FmZ1U",
+      authDomain: "ufmiau-48d76.firebaseapp.com",
+      projectId: "ufmiau-48d76",
+      storageBucket: "ufmiau-48d76.appspot.com",
+      messagingSenderId: "936233736261",
+      appId: "1:936233736261:web:4ef1b94189ae53dd81eb2c",
+      measurementId: "G-LYT86EJDBQ"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  
   <script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
