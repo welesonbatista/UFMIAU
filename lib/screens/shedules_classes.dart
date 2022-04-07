@@ -1,4 +1,8 @@
+import 'package:aplicativouniversitario/auth/user_data.dart';
+import 'package:aplicativouniversitario/components/form_profile.dart';
 import 'package:aplicativouniversitario/utilities/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Classes extends StatefulWidget {
@@ -299,8 +303,84 @@ class _ClassesState extends State<Classes> {
               ),
             ),
           ),
+          FloatingActionButton(
+            backgroundColor: orange,
+            onPressed: () {
+              _showMaterialDialog();
+            },
+            child: const Icon(
+              Icons.add,
+            ),
+          )
         ],
       ),
     );
+  }
+
+  final TextEditingController _classController = TextEditingController();
+
+  CollectionReference users = FirebaseFirestore.instance.collection('class');
+  final user = FirebaseAuth.instance.currentUser;
+  _dismissDialog() {
+    Navigator.pop(context);
+  }
+
+  void _showMaterialDialog() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Editar Perfil'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                FormFieldProfile(
+                  txt: 'Matéria',
+                  keyboard: TextInputType.number,
+                  controller: _classController,
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  _dismissDialog();
+                },
+                child: const Text(
+                  'Fechar',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () async {
+                  //add dados no firebase
+                  await users.doc(user?.email).set({
+                    'materia': _classController.text,
+                    // ignore: avoid_print
+                  }).then((value) => print('class added'));
+
+                  CollectionReference userC =
+                      FirebaseFirestore.instance.collection('class');
+                  final userF = FirebaseAuth.instance.currentUser;
+
+                  DocumentSnapshot userData =
+                      await userC.doc(userF?.email).get();
+                  UserData userFile = UserData();
+                  userFile.major = userData['curso'];
+                  userFile.integralization = userData['integralizacao'];
+                  userFile.academic = userData['indice_academico'];
+                  userFile.priority = userData['indice_prioridade'];
+                  userFile.studentNumber = userData['matricula'];
+                  print('cuuuuuuuuu: ' + userFile.major);
+
+                  _dismissDialog();
+                },
+                child: const Text('Salvar'),
+              )
+            ],
+          );
+        });
   }
 }
